@@ -26,55 +26,55 @@
                 <h2>Question 1</h2>
                 <div class="form-group">
                     <label for="question1">Your mind is always buzzing with unexplored ideas and plans.</label>
-                    <input type="range" class="custom-range" min="0" max="5" id="question1">
+                    <input type="range" class="custom-range" min="1" max="5" id="question1">
                 </div>
                 <h2>Question 2</h2>
                 <div class="form-group">
                     <label for="question2">Generally speaking, you rely more on your experience than your imagination.</label>
-                    <input type="range" class="custom-range" min="0" max="5" id="question2">
+                    <input type="range" class="custom-range" min="1" max="5" id="question2">
                 </div>
                 <h2>Question 3</h2>
                 <div class="form-group">
                     <label for="question3">You find it easy to stay relaxed and focused even when there is some pressure.</label>
-                    <input type="range" class="custom-range" min="0" max="5" id="question3">
+                    <input type="range" class="custom-range" min="1" max="5" id="question3">
                 </div>
                 <h2>Question 4</h2>
                 <div class="form-group">
                     <label for="question4">You rarely do something just out of sheer curiosity.</label>
-                    <input type="range" class="custom-range" min="0" max="5" id="question4">
+                    <input type="range" class="custom-range" min="1" max="5" id="question4">
                 </div>
                 <h2>Question 5</h2>
                 <div class="form-group">
                     <label for="question5">People can rarely upset you.</label>
-                    <input type="range" class="custom-range" min="0" max="5" id="question5">
+                    <input type="range" class="custom-range" min="1" max="5" id="question5">
                 </div>
                 <h2>Question 6</h2>
                 <div class="form-group">
                     <label for="question6">It is often difficult for you to relate to other people’s feelings.</label>
-                    <input type="range" class="custom-range" min="0" max="5" id="question6">
+                    <input type="range" class="custom-range" min="1" max="5" id="question6">
                 </div>
                 <h2>Question 7</h2>
                 <div class="form-group">
                     <label for="question7">In a discussion, truth should be more important than people’s sensitivities.</label>
-                    <input type="range" class="custom-range" min="0" max="5" id="question7">
+                    <input type="range" class="custom-range" min="1" max="5" id="question7">
                 </div>
                 <h2>Question 8</h2>
                 <div class="form-group">
                     <label for="question8">You rarely get carried away by fantasies and ideas.</label>
-                    <input type="range" class="custom-range" min="0" max="5" id="question8">
+                    <input type="range" class="custom-range" min="1" max="5" id="question8">
                 </div>
                 <h2>Question 9</h2>
                 <div class="form-group">
                     <label for="question9">You think that everyone’s views should be respected regardless of whether they are supported by facts or not.</label>
-                    <input type="range" class="custom-range" min="0" max="5" id="question9">
+                    <input type="range" class="custom-range" min="1" max="5" id="question9">
                 </div>
                 <h2>Question 10</h2>
                 <div class="form-group">
                     <label for="question10">You feel more energetic after spending time with a group of people.</label>
-                    <input type="range" class="custom-range" min="0" max="5" id="question10">
+                    <input type="range" class="custom-range" min="1" max="5" id="question10">
                 </div>
                 <br>
-                <button type="submit" class="btn btn-primary btn-lg btn-block"><i class="fas fa-check-square fa-fw"></i>Submit</button>
+                <button type="submit" class="btn btn-primary btn-lg btn-block submit"><i class="fas fa-check-square fa-fw"></i>Submit</button>
         </form>
     </div>
     <br>
@@ -89,5 +89,20 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script>
+    $(".submit").on("click",function(event){
+        event.preventDefault()
+        console.log("button clicked")
+        
+        let surveyAnswers = {name: $("#name").val(), imageUrl: $("#imageUrl").val(), questions: [$("#question1").val(), $("#question2").val(),$("#question3").val(),$("#question4").val(),$("#question5").val(),$("#question6").val(),$("#question7").val(),$("#question8").val(),$("#question9").val(),$("#question10").val(),]}
+
+        console.log(surveyAnswers)
+        
+        $.post("/api/survey", surveyAnswers, function(data){
+            console.log(data)
+        } )
+    })
+
+</script>
 </body>
 </html>
