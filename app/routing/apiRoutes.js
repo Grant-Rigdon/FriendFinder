@@ -17,9 +17,10 @@ module.exports = function(app) {
 
         let answers = req.body.questions
 
-        let match = ""
-        let matchImg = ""
-        let total = 100
+        let match = {
+            name: "",
+            img : "",
+            total : 100}
 
         for (i=0; i<friends.length; i++){
             let difference = 0
@@ -28,14 +29,15 @@ module.exports = function(app) {
                 difference += Math.abs(answers[j] - friends[i].questions[j])
             }
 
-            if(difference < total){
+            if(difference < match.total){
                 total = difference
-                match = friends[i].name
-                matchImg = friends[i].imageUrl
+                match.name = friends[i].name
+                match.img = friends[i].imageUrl
             }
         }
 
         friends.push(req.body)
+        res.json(match)
     })
 
     app.post("/api/clear", function(req, res) {        
